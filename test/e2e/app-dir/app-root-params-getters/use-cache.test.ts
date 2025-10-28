@@ -19,7 +19,7 @@ describe('app-root-param-getters - cache - at runtime', () => {
         '/en/us/use-cache'
       )
       const { session } = sandbox
-      await session.assertHasRedbox()
+      await session.waitForRedbox()
       expect(await session.getRedboxDescription()).toInclude(
         'Route /[lang]/[locale]/use-cache used `import(\'next/root-params\').lang()` inside `"use cache"` or `unstable_cache`'
       )
@@ -32,7 +32,7 @@ describe('app-root-param-getters - cache - at runtime', () => {
         '/en/us/unstable_cache'
       )
       const { session } = sandbox
-      await session.assertHasRedbox()
+      await session.waitForRedbox()
       expect(await session.getRedboxDescription()).toInclude(
         'Route /[lang]/[locale]/unstable_cache used `import(\'next/root-params\').lang()` inside `"use cache"` or `unstable_cache`'
       )
@@ -67,7 +67,7 @@ describe('app-root-param-getters - private cache', () => {
         '/en/us/use-cache-private'
       )
       const { session, browser } = sandbox
-      await session.assertNoRedbox()
+      await session.waitForNoRedbox()
       expect(await browser.elementById('param').text()).toBe('en us')
     })
   } else {

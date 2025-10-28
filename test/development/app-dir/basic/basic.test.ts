@@ -10,7 +10,7 @@ describe('basic app-dir tests', () => {
   it('should reload app pages without error', async () => {
     await using sandbox = await createSandbox(next, undefined, '/')
     const { session, browser } = sandbox
-    await session.assertNoRedbox()
+    await session.waitForNoRedbox()
 
     browser.refresh()
 
@@ -18,7 +18,7 @@ describe('basic app-dir tests', () => {
     await waitForHydration(browser)
 
     for (let i = 0; i < 15; i++) {
-      await session.assertNoRedbox()
+      await session.waitForNoRedbox()
       await waitFor(1000)
     }
   })

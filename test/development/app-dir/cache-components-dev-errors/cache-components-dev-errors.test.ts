@@ -1,8 +1,8 @@
 import stripAnsi from 'strip-ansi'
 import { nextTestSetup } from 'e2e-utils'
 import {
-  assertNoRedbox,
-  assertNoErrorToast,
+  waitForNoRedbox,
+  waitForNoErrorToast,
   hasErrorToast,
   retry,
 } from 'next-test-utils'
@@ -45,7 +45,7 @@ describe('Cache Components Dev Errors', () => {
     })
 
     await browser.elementByCss("[href='/error']").click()
-    await assertNoErrorToast(browser)
+    await waitForNoErrorToast(browser)
 
     await browser.loadPage(`${next.url}/error`)
 
@@ -189,6 +189,6 @@ describe('Cache Components Dev Errors', () => {
     `
     )
 
-    await assertNoRedbox(browser)
+    await waitForNoRedbox(browser)
   })
 })
